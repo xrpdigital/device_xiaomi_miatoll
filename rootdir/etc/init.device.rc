@@ -28,3 +28,11 @@ on init && property:ro.boot.hwname=curtana
 on init && property:ro.boot.hwname=joyeuse
     setprop ro.boot.product.hardware.sku joyeuse
     start vendor.nfc_hal_service
+
+on late-init
+    # Start services for bootanim
+    start surfaceflinger
+    start bootanim
+    start vendor.hwcomposer-2-3
+    start vendor.configstore-hal
+    start vendor.qti.hardware.display.allocator
