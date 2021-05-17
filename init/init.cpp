@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2020 The LineageOS Project
+ * Copyright (C) 2021 Paranoid Android
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,33 +15,36 @@
  * limitations under the License.
  */
 
+#include <android-base/properties.h>
+#include <sys/sysinfo.h>
+
 #include <cstdlib>
 #include <cstring>
-#include <sys/sysinfo.h>
 #include <vector>
-
-#include <android-base/properties.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
-#include "init_common.h"
-#include "vendor_init.h"
-
 #include "property_service.h"
+#include "vendor_init.h"
 
 using android::base::GetProperty;
 
 std::vector<std::string> ro_props_default_source_order = {
-    "",
-    "odm.",
-    "product.",
-    "system.",
-    "vendor.",
-    "system_ext.",
+    "", "odm.", "product.", "system.", "vendor.", "system_ext.",
 };
 
+void property_override(char const prop[], char const value[], bool add = true) {
+    auto pi = (prop_info *)__system_property_find(prop);
+
+    if (pi != nullptr) {
+        __system_property_update(pi, value, strlen(value));
+    } else if (add) {
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+    }
+}
+
 void set_ro_build_prop(const std::string &source, const std::string &prop,
-        const std::string &value, bool product = false) {
+                       const std::string &value, bool product = false) {
     std::string prop_name;
 
     if (product) {
@@ -66,32 +70,18 @@ void load_device_properties() {
 
     if (hwname == "curtana") {
         if (region == "Global_TWO") {
-            set_device_props(
-                    "Redmi", "curtana", "Redmi Note 9S");
+            set_device_props("Redmi", "curtana", "Redmi Note 9S");
         } else if (region == "India") {
-            set_device_props(
-                    "Redmi", "curtana", "Redmi Note 9 Pro");
+            set_device_props("Redmi", "curtana", "Redmi Note 9 Pro");
+        } else if (region == "Japan") {
+            set_device_props("Redmi", "curtana", "Redmi Note 9S");
         }
     } else if (hwname == "excalibur") {
-        set_device_props(
-                "Redmi", "excalibur", "Redmi Note 9 Pro Max");
+        set_device_props("Redmi", "excalibur", "Redmi Note 9 Pro Max");
     } else if (hwname == "gram") {
-        set_device_props(
-                "POCO", "gram", "POCO M2 Pro");
+        set_device_props("POCO", "gram", "POCO M2 Pro");
     } else if (hwname == "joyeuse") {
-        set_device_props(
-                "Redmi", "joyeuse", "Redmi Note 9 Pro");
-    }
-}
-
-void property_override(char const prop[], char const value[], bool add)
-{
-    auto pi = (prop_info *) __system_property_find(prop);
-
-    if (pi != nullptr) {
-        __system_property_update(pi, value, strlen(value));
-    } else if (add) {
-        __system_property_add(prop, strlen(prop), value, strlen(value));
+        set_device_props("Redmi", "joyeuse", "Redmi Note 9 Pro");
     }
 }
 
@@ -135,10 +125,6 @@ void load_dalvik_properties() {
 }
 
 void vendor_load_properties() {
-    load_common_properties();
-    load_device_properties();
-}
-
-void load_common_properties() {
     load_dalvik_properties();
+    load_device_properties();
 }
