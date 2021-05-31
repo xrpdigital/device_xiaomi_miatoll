@@ -1,0 +1,14 @@
+[
+  {
+    "remote": "pex",
+    "repository": "kernel_xiaomi_miatoll",
+    "target_path": "kernel/xiaomi/miatoll",
+    "branch": "eleven"
+  },
+  {
+    "remote": "pex",
+    "repository": "vendor_xiaomi_miatoll",
+    "target_path": "vendor/xiaomi/miatoll",
+    "branch": "eleven"
+  }
+]

@@ -15,30 +15,12 @@
 //
 
 cc_library_static {
-    name: "libinit_xiaomi_sm6250_common",
+    name: "libinit_miatoll",
     recovery_available: true,
-    srcs: [
-        "init_common.cpp"
-    ],
+    shared_libs: ["libbase"],
+    srcs: ["init.cpp"],
     include_dirs: [
         "system/core/base/include",
         "system/core/init"
-    ],
-    export_include_dirs: [
-        "include"
-    ],
-    shared_libs: [
-        "libbase",
-    ]
-}
-
-cc_library_static {
-    name: "libinit_xiaomi_sm6250",
-    recovery_available: true,
-    srcs: [
-        "init.cpp"
-    ],
-    whole_static_libs: [
-        "libinit_xiaomi_sm6250_common"
     ]
 }
