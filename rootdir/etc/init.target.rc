@@ -180,9 +180,6 @@ service vibrator_calibration /vendor/bin/vibrator_calibration
 on property:sys.boot_completed=1
     start vibrator_calibration
 
-    # Enable ZRAM on boot_complete
-    swapon_all /vendor/etc/fstab.qcom
-
     # Back to default VM settings
     write /proc/sys/vm/dirty_expire_centisecs 3000
     write /proc/sys/vm/dirty_background_ratio 10
