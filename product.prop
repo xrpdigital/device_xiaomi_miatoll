@@ -22,9 +22,6 @@ ro.config.low_ram=false
 # Incremental FS
 ro.incremental.enable=1
 
-# USAP
-persist.device_config.runtime_native.usap_pool_enabled=true
-
 # IORap
 ro.iorapd.enable=true
 iorapd.perfetto.enable=true
