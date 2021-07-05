@@ -66,6 +66,9 @@ AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 BOARD_HAS_QCA_FM_SOC := cherokee
 BOARD_HAVE_QCOM_FM := true
 
+# Gesture
+TARGET_TAP_TO_WAKE_EVENT_NODE  := "/sys/touchpanel/double_tap"
+
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image.gz

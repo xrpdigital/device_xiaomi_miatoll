@@ -137,6 +137,10 @@ on boot
     setprop vendor.usb.qdss.inst.name "qdss"
     setprop sys.usb.configfs 1
 
+# Set Permission For Dt2w
+    chmod 0660 /sys/touchpanel/double_tap
+    chown system system /sys/touchpanel/double_tap
+
 #pd-mapper
 service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
