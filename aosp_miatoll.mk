@@ -11,12 +11,13 @@ $(call inherit-product, device/xiaomi/miatoll/device.mk)
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
 # Gapps
-IS_PHONE := true
-TARGET_INCLUDE_GAPPS := true
+TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_GAPPS_ARCH := arm64
-TARGET_SUPPORTS_GOOGLE_RECORDER := true
 TARGET_INCLUDE_STOCK_ARCORE := true
+TARGET_SUPPORTS_GOOGLE_RECORDER := true
+TARGET_FACE_UNLOCK_SUPPORTED := true
 TARGET_INCLUDE_LIVE_WALLPAPERS := true
+CUSTOM_BUILD_TYPE := OFFICIAL
 
 # Bootanimation Resolution
 TARGET_BOOT_ANIMATION_RES := 1080

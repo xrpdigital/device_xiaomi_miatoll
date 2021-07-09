@@ -135,7 +135,7 @@ ro.zram.periodic_wb_delay_hours=24
 
 # PixelPlusUI OFFICIAL
 ro.ppui.device_name=Miatoll
-ro.ppui.version=3.6
-ro.ppui.version_code=Unicorn
+ro.ppui.version=3.7
+ro.ppui.version_code=Ragnarok
 ro.ppui.is_official=true
 ro.ppui.maintainer_name=itsXRP
