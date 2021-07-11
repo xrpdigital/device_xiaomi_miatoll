@@ -56,8 +56,9 @@ void set_ro_build_prop(const std::string &source, const std::string &prop,
     property_override(prop_name.c_str(), value.c_str(), false);
 }
 
-void set_device_props(const std::string brand, const std::string device, const std::string model) {
+void set_device_props(const std::string fingerprint, const std::string description,const std::string brand, const std::string device, const std::string model) {
     for (const auto &source : ro_props_default_source_order) {
+        set_ro_build_prop(source, "fingerprint", fingerprint);
         set_ro_build_prop(source, "brand", brand, true);
         set_ro_build_prop(source, "device", device, true);
         set_ro_build_prop(source, "model", model, true);
@@ -70,18 +71,36 @@ void load_device_properties() {
 
     if (hwname == "curtana") {
         if (region == "Global_TWO") {
-            set_device_props("Redmi", "curtana", "Redmi Note 9S");
+            set_device_props(
+                    "google/redfin/redfin:11/RQ3A.210705.001/7380771:user/release-keys",
+                    "redfin-user 11 RQ3A.210705.001 7380771 release-keys",
+                    "Redmi", "curtana", "Redmi Note 9S");
         } else if (region == "India") {
-            set_device_props("Redmi", "curtana", "Redmi Note 9 Pro");
+            set_device_props(
+                    "google/redfin/redfin:11/RQ3A.210705.001/7380771:user/release-keys",
+                    "redfin-user 11 RQ3A.210705.001 7380771 release-keys",
+                    "Redmi", "curtana", "Redmi Note 9S");
         } else if (region == "Japan") {
-            set_device_props("Redmi", "curtana", "Redmi Note 9S");
+            set_device_props(
+                    "google/redfin/redfin:11/RQ3A.210705.001/7380771:user/release-keys",
+                    "redfin-user 11 RQ3A.210705.001 7380771 release-keys",
+                    "Redmi", "curtana", "Redmi Note 9S");
         }
     } else if (hwname == "excalibur") {
-        set_device_props("Redmi", "excalibur", "Redmi Note 9 Pro Max");
+        set_device_props(
+                    "google/redfin/redfin:11/RQ3A.210705.001/7380771:user/release-keys",
+                    "redfin-user 11 RQ3A.210705.001 7380771 release-keys",
+                    "Redmi", "excalibur", "Redmi Note 9 Pro Max");
     } else if (hwname == "gram") {
-        set_device_props("POCO", "gram", "POCO M2 Pro");
+        set_device_props(
+                    "google/redfin/redfin:11/RQ3A.210705.001/7380771:user/release-keys",
+                    "redfin-user 11 RQ3A.210705.001 7380771 release-keys",
+                    "POCO", "gram", "POCO M2 Pro");
     } else if (hwname == "joyeuse") {
-        set_device_props("Redmi", "joyeuse", "Redmi Note 9 Pro");
+        set_device_props(
+                    "google/redfin/redfin:11/RQ3A.210705.001/7380771:user/release-keys",
+                    "redfin-user 11 RQ3A.210705.001 7380771 release-keys",
+                    "Redmi", "joyeuse", "Redmi Note 9 Pro");
     }
 }
 
